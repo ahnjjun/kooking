@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * ¸ðµç ¿äÃ»À» Áß¾ÓÁýÁßÀûÀ¸·Î °ü¸®ÇÏ°ÔµÉ Servlet
+ *   : ÁøÀÔÁ¡ ControllerÀÌ´Ù.
+ */
 @WebServlet(urlPatterns = "/front"  , loadOnStartup = 1)
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +31,7 @@ public class DispatcherServlet extends HttpServlet {
 	}
    
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String key =  request.getParameter("key"); //Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		String key =  request.getParameter("key"); //Å¬·¡½º¸¦Ã£±âÀ§ÇÑ °ª
 		String methodName = request.getParameter("methodName"); //ex) 
 		
 		try {
@@ -39,17 +43,17 @@ public class DispatcherServlet extends HttpServlet {
 				methodName="select";
 			}
 			
-			Class<?> clz = clzMap.get(key); //reflectionï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
+			Class<?> clz = clzMap.get(key); //reflection°³³äÀ» Àû¿ëÇÏ±â À§ÇÑ °´Ã¼¸¦ ±¸ÇÑ´Ù.
 			
-			//Stringï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â°ï¿½ï¿½ï¿½ 
+			//StringÀ» ÇÏ³ªÀÇ ¸Þ¼ÒµåÀÇ °³³äÀ¸·Î ¸¸µå´Â°úÁ¤ 
 			Method method = clz.getMethod(methodName, HttpServletRequest.class  , HttpServletResponse.class);
 			
 			Controller controller = map.get(key);
 			
-			//ï¿½ï¿½Ã¼ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Þ¼Òµï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï´Â°ï¿½ï¿½ï¿½(È£ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½  ï¿½ï¿½ï¿½ï¿½)
-			ModelAndView mv =(ModelAndView)method.invoke(controller, request, response); //ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½
+			//°´Ã¼¾È¿¡ µé¾îÀÖ´Â ¸Þ¼ÒµéÀ» È£ÃâÇÏ´Â°úÁ¤(È£ÃâÇÒ¶§ ÀÎÀÚ°ª  Àü´Þ)
+			ModelAndView mv =(ModelAndView)method.invoke(controller, request, response); //¸Þ¼Òµå È£Ãâ
 			
-			if(mv.isRedirect()) {//redirectï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
+			if(mv.isRedirect()) {//redirect¹æ½ÄÀÌ´Ù.
 				response.sendRedirect(mv.getViewName());
 			}else {
 				request.getRequestDispatcher(mv.getViewName()).forward(request, response);
@@ -63,9 +67,9 @@ public class DispatcherServlet extends HttpServlet {
 			
 		}
 		
-	}//serviceï¿½ï¿½
+	}//service³¡
 
-}//Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+}//Å¬·¡½º³¡
 
 
 
