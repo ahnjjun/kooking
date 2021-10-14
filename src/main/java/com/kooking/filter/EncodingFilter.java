@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 
 /**
- * post방식 한글 인코딩 처리 Filter 한글
+ * post방식 한글 인코딩 처리 Filter
  */
 @WebFilter(
 		urlPatterns = { "/*" }, 
