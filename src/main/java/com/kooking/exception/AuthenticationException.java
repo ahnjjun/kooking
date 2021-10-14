@@ -1,7 +1,7 @@
 package com.kooking.exception;
 
 /**
- * ·Î±×ÀÎÇÒ¶§ ÀÎÁõ¿¡ ½ÇÆÐÇÏ¸é ¹ß»ýÇÏ´Â ¿¹¿ÜÁ¾·ù
+ * ï¿½Î±ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ß»ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ í…ŒìŠ¤íŠ¸
  * */
 public class AuthenticationException extends Exception {
 	private static final long serialVersionUID = 5227561488556420975L;
